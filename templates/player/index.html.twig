@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PlayerController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    {% if players is not empty and players is defined %}
+    {% for player in players %}
+{{ player.username~' '~ player.birthday   }}
+
+<tr>
+<td>
+<a href ="{{path('app_editplayer',{'id':player.id})}}">Edit</a> 
+<a href ="{{path('app_deletePlayer',{'id':player.id})}}">Delete</a>        
+</td>
+</tr>
+<br>
+
+{% endfor %}
+<a href ="{{path('app_addplayer')}}">Add</a>
+{%   else %}
+Le tableau est vide <br>
+AJOUTER DES TEAMS <br>
+<a href ="{{path('app_addplayer')}}">Add</a>
+{% endif %}
+</div>
+{% endblock %}
